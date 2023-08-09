@@ -5,13 +5,13 @@ services:
     image: docker.bintray.io/jfrog/artifactory-jcr:latest
     container_name: artifactory
     ports:
-      - "8080:8080"
       - "8081:8081"
+      - "8082:8082"
     volumes:
       - ./artifactory/:/artifactory_extra_conf/
     restart: always    
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/artifactory/api/system/ping"]
+      test: ["CMD", "curl", "-f", "http://localhost:8082/artifactory/api/system/ping"]
       interval: 5s
       timeout: 10s
       retries: 30
